@@ -38,7 +38,8 @@ mydb.save(data);
 ```
 ## Configuration
 ### Spring Boot Configuration
-Configurations can be place in the Application.properties (or yml, or json) as usual. The username and password is mandatory.
+Configurations can be placed in the application.properties (or yml, or json) as usual.
+The username and password is mandatory.
 ```
 ##### Mandatory configs #####
 cloudant.username=myUserName     #Username as assigned by Cloudant.
@@ -46,8 +47,8 @@ cloudant.password=myPasswd       #Password as assigned by Cloudant.
 
 ##### Optional configs #####
 cloudant.account=myAccountName   #Defaults to username if left blank.
-cloudant.url=Cloudant URL        #Defaults to official server.
-cloudant.proxyURL=http://...     #URL to proxy server
+cloudant.url=...                 #Defaults to official server.
+cloudant.proxyURL=...            #URL to proxy server
 cloudant.proxyUser=myUserName    #Proxy username
 cloudant.proxyPassword=myPasswd  #Proxy password.
 cloudant.connectTimeout=300      #Connect timeout in seconds. Default to 300 seconds (5 minutes).
@@ -56,9 +57,9 @@ cloudant.maxConnections=6        #Default to 6.
 cloudant.disableSSLAuthentication=false   #Defaults to false.
 ```
 ### Bluemix (CloudFoundry) Configuration
-When using Bluemix (CloudFoundry), the client will automatically use the Cloudant service binded to the app instead of the Spring configuration.
+When using Bluemix (CloudFoundry), the client will **automatically use the Cloudant service binded to the app** instead of the Spring configuration.
 
-Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will always take precedence over any Spring configuration. This is useful - Local development will use the Spring configuration properties, and promoting it to Bluemix will automatically use the environment configured instance. If Spring's configuration is desired, just remove the Cloudant service binding from your Bluemix app.
+Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will *always* take precedence over any Spring configuration. This is useful - Local development will use the Spring configuration properties, and promoting it to Bluemix will automatically use the environment configured instance. If Spring's configuration is desired, just remove the Cloudant service binding from your Bluemix app.
 
 ## Requirements
 - Java 1.6+
