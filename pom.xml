@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.clianz</groupId>
 	<artifactId>cloudant-spring-boot-starter</artifactId>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.2.1</version>
 	<name>cloudant-spring-boot-starter</name>
 	<description>Spring Boot Starter Cloudant</description>
 	<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
@@ -30,7 +30,7 @@
 		<connection>scm:git:git@github.com:icha024/cloudant-spring-boot-starter.git</connection>
 		<developerConnection>scm:git:git@github.com:icha024/cloudant-spring-boot-starter.git</developerConnection>
 		<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
-	  <tag>HEAD</tag>
+	  <tag>cloudant-spring-boot-starter-0.2.1</tag>
   </scm>
 	<dependencies>
 		<dependency>
