@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.clianz</groupId>
-	<artifactId>spring-boot-starter-cloudant</artifactId>
+	<artifactId>cloudant-spring-boot-starter</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
-	<name>spring-boot-starter-cloudant</name>
+	<name>cloudant-spring-boot-starter</name>
 	<description>Spring Boot Starter Cloudant</description>
-	<url>http://github.com/icha024/spring-boot-starter-cloudant</url>
+	<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
 	<properties>
 		<java.version>1.6</java.version>
 	</properties>
@@ -27,9 +27,9 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:git@github.com:icha024/spring-boot-starter-cloudant.git</connection>
-		<developerConnection>scm:git:git@github.com:icha024/spring-boot-starter-cloudant.git</developerConnection>
-		<url>http://github.com/icha024/spring-boot-starter-cloudant</url>
+		<connection>scm:git:git@github.com:icha024/cloudant-spring-boot-starter.git</connection>
+		<developerConnection>scm:git:git@github.com:icha024/cloudant-spring-boot-starter.git</developerConnection>
+		<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
 	  <tag>HEAD</tag>
   </scm>
 	<dependencies>
