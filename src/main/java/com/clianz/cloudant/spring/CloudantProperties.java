@@ -1,6 +1,6 @@
 package com.clianz.cloudant.spring;
 
-import com.clianz.cloudant.spring.internal.CredentialUtils;
+import com.clianz.bluemix.configurator.BluemixConfigStore;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -42,11 +42,15 @@ public class CloudantProperties {
 	public void init() throws MalformedURLException {
 
 		try {
-			String username = CredentialUtils.getCloudantUsername();
-			String password = CredentialUtils.getCloudantPassword();
-			cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
-			log.info("Using VCAP_SERVICES configuration for Cloudant.");
-			return;
+			String username = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials().getUsername();
+			String password = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials().getPassword();
+			if (username != null && password != null && username.length() > 0 && password.length() > 0) {
+				cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
+				log.info("Using VCAP_SERVICES configuration for Cloudant.");
+				return;
+			} else {
+				log.info("VCAP_SERVICES invalid, switching to Spring properties");
+			}
 		} catch (IllegalArgumentException e) {
 			log.warning("Can not initiate Cloudant client from VCAP_SERVICES, switching to use Spring properties.");
 		}
@@ -58,10 +62,10 @@ public class CloudantProperties {
 		ClientBuilder clientBuilder;
 		// To use Spring config file, either url or account/username must be configured.
 		// Fallback to use CF's VCAP_SERVICES env variable if property doesn't exist.
-		if (url!= null) {
+		if (url != null) {
 			log.info("Using Cloudant URL properties config");
 			clientBuilder = ClientBuilder.url(new URL(url));
-		} else if (account != null){
+		} else if (account != null) {
 			log.info("Using Cloudant account name: " + account);
 			clientBuilder = ClientBuilder.account(account);
 		} else {
