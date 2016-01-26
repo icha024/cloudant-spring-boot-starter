@@ -1,0 +1,36 @@
+/*.idea
+/**/.idea
+/*.iml
+*.iml
+/**/*.iml
+/.settings
+/.checkstyle
+/.classpath
+/.project
+/target
+/**/.settings
+/**/.checkstyle
+/**/.classpath
+/**/.project
+/**/target
+/**/target/**
+/**/*~
+/out
+*~
+dependency-reduced-pom.xml
+*.iml
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+pom.xml.*
+release.properties
+

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.clianz.cloudant.spring.CloudantAutoConfiguration
