@@ -63,10 +63,10 @@ public class CloudantProperties {
 		// To use Spring config file, either url or account/username must be configured.
 		// Fallback to use CF's VCAP_SERVICES env variable if property doesn't exist.
 		if (url != null) {
-			log.info("Using Cloudant URL properties config");
+			log.finest("Using Cloudant URL properties config");
 			clientBuilder = ClientBuilder.url(new URL(url));
 		} else if (account != null) {
-			log.info("Using Cloudant account name: " + account);
+			log.finest("Using Cloudant account name: " + account);
 			clientBuilder = ClientBuilder.account(account);
 		} else {
 			log.severe("Can not initiate Cloudant client from Spring config.");
