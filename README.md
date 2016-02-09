@@ -5,7 +5,7 @@ Provides convenient Cloudant dependency and configuration helper.
 <dependency>
   <groupId>com.clianz</groupId>
   <artifactId>cloudant-spring-boot-starter</artifactId>
-  <version>0.2.1</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 ## Usage
