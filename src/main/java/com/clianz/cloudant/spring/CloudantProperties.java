@@ -1,6 +1,7 @@
 package com.clianz.cloudant.spring;
 
 import com.clianz.bluemix.configurator.BluemixConfigStore;
+import com.clianz.bluemix.configurator.models.components.CloudantNoSQLDB;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
 /**
  * Configuration properties for Cloudant.
  *
- * @author Ian Chan
+ * @author ian.chan@clianz.com (Ian Chan)
  */
 @Configuration
 @ConfigurationProperties(prefix = "cloudant")
@@ -42,9 +43,10 @@ public class CloudantProperties {
 	public void init() throws MalformedURLException {
 
 		try {
-			String username = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials().getUsername();
-			String password = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials().getPassword();
-			if (username != null && password != null && username.length() > 0 && password.length() > 0) {
+			CloudantNoSQLDB.Credentials credentials = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials();
+			if (credentials != null && credentials.getUsername() != null && credentials.getPassword() != null) {
+				username = credentials.getUsername();
+				password = credentials.getPassword();
 				cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
 				log.info("Using VCAP_SERVICES configuration for Cloudant.");
 				return;

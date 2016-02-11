@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for Cloudant.
  *
- * @author Ian Chan
+ * @author ian.chan@clianz.com (Ian Chan)
  */
 @Configuration
 @EnableConfigurationProperties(CloudantProperties.class)
