@@ -32,7 +32,7 @@ public Database mydb(CloudantClient cloudant) {
 Then start using it:
 ```java
 @Autowired
-Database mydb
+Database mydb;
 ```
 ```java
 mydb.save(data);
