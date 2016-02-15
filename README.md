@@ -42,13 +42,13 @@ mydb.save(data);
 Configurations can be placed in the application.properties (or yml, or json) as usual.
 The username and password is mandatory.
 ```properties
-##### Mandatory configs #####
+##### Mandatory configs, either username/password or a url must be specified #####
 cloudant.username=myUserName     #Username as assigned by Cloudant.
 cloudant.password=myPasswd       #Password as assigned by Cloudant.
+cloudant.url=http...             #Defaults to official server.
 
 ##### Optional configs #####
 cloudant.account=myAccountName   #Defaults to username if left blank.
-cloudant.url=...                 #Defaults to official server.
 cloudant.proxyURL=...            #URL to proxy server
 cloudant.proxyUser=myUserName    #Proxy username
 cloudant.proxyPassword=myPasswd  #Proxy password.
@@ -64,4 +64,4 @@ Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will 
 
 ## Requirements
 - Java 1.6+
-- Official Cloudant client 2.x
+- Official Cloudant client 2.x 
