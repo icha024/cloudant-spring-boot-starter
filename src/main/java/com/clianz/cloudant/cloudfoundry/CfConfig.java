@@ -11,7 +11,7 @@ import lombok.Setter;
  * @author ian.chan@clianz.com (Ian Chan)
  */
 @Setter
-public class CfConfigParser {
+public class CfConfig {
 
 	@Getter
 	@SerializedName("cloudantNoSQLDB")

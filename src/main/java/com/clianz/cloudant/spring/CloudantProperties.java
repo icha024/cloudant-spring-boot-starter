@@ -1,6 +1,6 @@
 package com.clianz.cloudant.spring;
 
-import com.clianz.cloudant.cloudfoundry.CfConfigParser;
+import com.clianz.cloudant.cloudfoundry.CfConfig;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.google.gson.Gson;
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 @ConfigurationProperties(prefix = "cloudant")
 public class CloudantProperties {
 
-	public static final Logger log = Logger.getLogger(CloudantProperties.class.getName());
+	private static final Logger log = Logger.getLogger(CloudantProperties.class.getName());
 
 	private CloudantClient cloudantClient;
 	private String account;
@@ -41,13 +41,12 @@ public class CloudantProperties {
 	private boolean disableSSLAuthentication;
 
 	@PostConstruct
-	public void init() throws MalformedURLException {
-
+	public void createCloudantClient() throws MalformedURLException {
 		try {
 			String vcapServices = System.getenv("VCAP_SERVICES");
 			if (vcapServices != null) {
-				CfConfigParser cfConfigParser = new Gson().fromJson(vcapServices, CfConfigParser.class);
-				CfConfigParser.Credentials credentials = cfConfigParser.getCloudantNoSQLDB().getCredentials();
+				CfConfig cfConfig = new Gson().fromJson(vcapServices, CfConfig.class);
+				CfConfig.Credentials credentials = cfConfig.getCloudantNoSQLDB().getCredentials();
 				if (credentials.getUsername() != null && credentials.getPassword() != null) {
 					username = credentials.getUsername();
 					password = credentials.getPassword();
