@@ -1,7 +1,5 @@
 package com.clianz.cloudant.spring;
 
-import com.clianz.bluemix.configurator.BluemixConfigStore;
-import com.clianz.bluemix.configurator.models.components.CloudantNoSQLDB;
 import com.clianz.cloudant.cloudfoundry.CfConfigParser;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
