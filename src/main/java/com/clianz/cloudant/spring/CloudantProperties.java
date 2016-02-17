@@ -2,8 +2,11 @@ package com.clianz.cloudant.spring;
 
 import com.clianz.bluemix.configurator.BluemixConfigStore;
 import com.clianz.bluemix.configurator.models.components.CloudantNoSQLDB;
+import com.clianz.cloudant.cloudfoundry.CfConfigParser;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
+import com.google.gson.Gson;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +22,7 @@ import java.util.logging.Logger;
  *
  * @author ian.chan@clianz.com (Ian Chan)
  */
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "cloudant")
 public class CloudantProperties {
@@ -26,7 +30,6 @@ public class CloudantProperties {
 	public static final Logger log = Logger.getLogger(CloudantProperties.class.getName());
 
 	private CloudantClient cloudantClient;
-
 	private String account;
 	private String username;
 	private String password;
@@ -43,15 +46,19 @@ public class CloudantProperties {
 	public void init() throws MalformedURLException {
 
 		try {
-			CloudantNoSQLDB.Credentials credentials = BluemixConfigStore.getConfig().getCloudantNoSQLDB().getCredentials();
-			if (credentials != null && credentials.getUsername() != null && credentials.getPassword() != null) {
-				username = credentials.getUsername();
-				password = credentials.getPassword();
-				cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
-				log.info("Using VCAP_SERVICES configuration for Cloudant.");
-				return;
-			} else {
-				log.info("VCAP_SERVICES invalid, switching to Spring properties");
+			String vcapServices = System.getenv("VCAP_SERVICES");
+			if (vcapServices != null) {
+				CfConfigParser cfConfigParser = new Gson().fromJson(vcapServices, CfConfigParser.class);
+				CfConfigParser.Credentials credentials = cfConfigParser.getCloudantNoSQLDB().getCredentials();
+				if (credentials.getUsername() != null && credentials.getPassword() != null) {
+					username = credentials.getUsername();
+					password = credentials.getPassword();
+					cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
+					log.info("Using VCAP_SERVICES configuration for Cloudant.");
+					return;
+				} else {
+					log.info("VCAP_SERVICES invalid, switching to Spring properties");
+				}
 			}
 		} catch (IllegalArgumentException e) {
 			log.warning("Can not initiate Cloudant client from VCAP_SERVICES, switching to use Spring properties.");
@@ -97,97 +104,5 @@ public class CloudantProperties {
 			clientBuilder.disableSSLAuthentication();
 		}
 		cloudantClient = clientBuilder.build();
-	}
-
-	public CloudantClient getCloudantClient() {
-		return cloudantClient;
-	}
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getProxyURL() {
-		return proxyURL;
-	}
-
-	public void setProxyURL(String proxyURL) {
-		this.proxyURL = proxyURL;
-	}
-
-	public void setProxyUser(String proxyUser) {
-		this.proxyUser = proxyUser;
-	}
-
-	public String getProxyUser() {
-		return proxyUser;
-	}
-
-	public String getProxyPassword() {
-		return proxyPassword;
-	}
-
-	public void setProxyPassword(String proxyPassword) {
-		this.proxyPassword = proxyPassword;
-	}
-
-	public long getConnectTimeout() {
-		return connectTimeout;
-	}
-
-	public void setConnectTimeout(long connectTimeout) {
-		this.connectTimeout = connectTimeout;
-	}
-
-	public long getReadTimeout() {
-		return readTimeout;
-	}
-
-	public void setReadTimeout(long readTimeout) {
-		this.readTimeout = readTimeout;
-	}
-
-	public int getMaxConnections() {
-		return maxConnections;
-	}
-
-	public void setMaxConnections(int maxConnections) {
-		this.maxConnections = maxConnections;
-	}
-
-	public boolean isDisableSSLAuthentication() {
-		return disableSSLAuthentication;
-	}
-
-	public void setDisableSSLAuthentication(boolean disableSSLAuthentication) {
-		this.disableSSLAuthentication = disableSSLAuthentication;
 	}
 }

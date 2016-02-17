@@ -1,4 +1,4 @@
-package com.clianz.cloudant.basedocument;
+package com.clianz.cloudant.basedoc;
 
 import com.google.gson.annotations.SerializedName;
 
