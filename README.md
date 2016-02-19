@@ -40,21 +40,21 @@ mydb.save(data);
 ## Configuration
 ### Spring Boot Configuration
 Configurations can be placed in the application.properties (or yml, or json) as usual.
-The username and password is mandatory.
+Either username/password or a url must be specified.
 ```properties
-##### Mandatory configs, either username/password or a url must be specified #####
-cloudant.username=myUserName     #Username as assigned by Cloudant.
-cloudant.password=myPasswd       #Password as assigned by Cloudant.
-cloudant.url=http...             #Defaults to official server.
+##### Mandatory configs - username/password or url #####
+cloudant.username=myUserName         #Username as assigned by Cloudant.
+cloudant.password=myPasswd           #Password as assigned by Cloudant.
+cloudant.url=http://localhost:5984   #Defaults to official server.
 
 ##### Optional configs #####
-cloudant.account=myAccountName   #Defaults to username if left blank.
-cloudant.proxyURL=...            #URL to proxy server
-cloudant.proxyUser=myUserName    #Proxy username
-cloudant.proxyPassword=myPasswd  #Proxy password.
-cloudant.connectTimeout=300      #Connect timeout in seconds. Default to 300 seconds (5 minutes).
-cloudant.readTimeout=300         #Read timeout in seconds. Default to 300 seconds (5 minutes).
-cloudant.maxConnections=6        #Default to 6.
+cloudant.account=myAccountName       #Defaults to username if left blank.
+cloudant.proxyURL=http...            #URL to proxy server
+cloudant.proxyUser=myUserName        #Proxy username
+cloudant.proxyPassword=myPasswd      #Proxy password.
+cloudant.connectTimeout=300          #Connect timeout in seconds. Default to 300 seconds (5 minutes).
+cloudant.readTimeout=300             #Read timeout in seconds. Default to 300 seconds (5 minutes).
+cloudant.maxConnections=6            #Default to 6.
 cloudant.disableSSLAuthentication=false   #Defaults to false.
 ```
 ### Bluemix (CloudFoundry) Configuration
@@ -64,4 +64,4 @@ Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will 
 
 ## Requirements
 - Java 1.6+
-- Official Cloudant client 2.x 
+- Official Cloudant client 2.x (v2.2.0 is included as transitive dependency) 
