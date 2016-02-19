@@ -65,3 +65,7 @@ Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will 
 ## Requirements
 - Java 1.6+
 - Official Cloudant client 2.x    (v2.2.0 is included as transitive dependency) 
+
+## License
+
+Version 2.0 of the Apache License.
