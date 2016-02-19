@@ -8,7 +8,7 @@ import lombok.Setter;
 /**
  * Config parser for Bluemix/CloudFoundry Cloudant configs.
  *
- * @author ian.chan@clianz.com (Ian Chan)
+ * @author Ian Chan (ian.chan@clianz.com)
  */
 @Setter
 public class CfConfig {

@@ -1,10 +1,12 @@
 package com.clianz.cloudant.basedoc;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
 /**
  * A convenient base class for Cloudant object to generate id and rev field.
  */
+@Data
 public abstract class CloudantDoc {
 
 	@SerializedName("_id")
@@ -12,20 +14,4 @@ public abstract class CloudantDoc {
 
 	@SerializedName("_rev")
 	private String rev;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getRev() {
-		return rev;
-	}
-
-	public void setRev(String rev) {
-		this.rev = rev;
-	}
 }

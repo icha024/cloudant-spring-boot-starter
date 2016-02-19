@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Configuration properties for Cloudant.
  *
- * @author ian.chan@clianz.com (Ian Chan)
+ * @author Ian Chan (ian.chan@clianz.com)
  */
 @Data
 @Configuration
