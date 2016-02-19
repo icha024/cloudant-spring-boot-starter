@@ -39,7 +39,7 @@ mydb.save(data);
 ```
 ## Configuration
 ### Spring Boot Configuration
-Configurations can be placed in the application.properties (or yml, or json) as usual.
+Configurations can be placed in the application.properties (or yml) as usual.
 Either username/password or a URL must be specified.
 ```properties
 ##### Mandatory configs - username/password or url #####
@@ -64,7 +64,7 @@ Bluemix's VCAP_SERVICES environment variable containing a Cloudant service will 
 
 ## Requirements
 - Java 1.6+
-- Official Cloudant client 2.x    (v2.2.0 is included as transitive dependency) 
+- [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.2.0 is included as transitive dependency) 
 
 ## License
 
