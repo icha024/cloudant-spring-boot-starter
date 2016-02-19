@@ -52,8 +52,8 @@ cloudant.account=myAccountName            #Defaults to username if left blank.
 cloudant.proxyURL=http...                 #URL to proxy server.
 cloudant.proxyUser=myUserName             #Proxy username.
 cloudant.proxyPassword=myPasswd           #Proxy password.
-cloudant.connectTimeout=300               #Connect timeout in seconds. Default to 300 seconds (5 minutes).
-cloudant.readTimeout=300                  #Read timeout in seconds. Default to 300 seconds (5 minutes).
+cloudant.connectTimeout=300               #Connect timeout in seconds. Default to 300 sec (5 minutes).
+cloudant.readTimeout=300                  #Read timeout in seconds. Default to 300 sec (5 minutes).
 cloudant.maxConnections=6                 #Default to 6.
 cloudant.disableSSLAuthentication=false   #Defaults to false.
 ```
