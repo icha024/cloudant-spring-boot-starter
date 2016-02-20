@@ -1,18 +1,19 @@
 package com.clianz.cloudant.spring;
 
+import javax.annotation.PostConstruct;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 import com.clianz.cloudant.cloudfoundry.CfConfig;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.google.gson.Gson;
 import lombok.Data;
+import lombok.extern.java.Log;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 
 /**
@@ -21,12 +22,10 @@ import java.util.logging.Logger;
  * @author Ian Chan (ian.chan@clianz.com)
  */
 @Data
+@Log
 @Configuration
 @ConfigurationProperties(prefix = "cloudant")
 public class CloudantProperties {
-
-	private static final Logger log = Logger.getLogger(CloudantProperties.class.getName());
-
 	private CloudantClient cloudantClient;
 	private String account;
 	private String username;
@@ -53,11 +52,13 @@ public class CloudantProperties {
 					cloudantClient = ClientBuilder.account(username).username(username).password(password).build();
 					log.info("Using VCAP_SERVICES configuration for Cloudant.");
 					return;
-				} else {
+				}
+				else {
 					log.info("VCAP_SERVICES invalid, switching to Spring properties");
 				}
 			}
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			log.warning("Can not initiate Cloudant client from VCAP_SERVICES, switching to use Spring properties.");
 		}
 
@@ -71,10 +72,12 @@ public class CloudantProperties {
 		if (url != null) {
 			log.finest("Using Cloudant URL properties config");
 			clientBuilder = ClientBuilder.url(new URL(url));
-		} else if (account != null) {
+		}
+		else if (account != null) {
 			log.finest("Using Cloudant account name: " + account);
 			clientBuilder = ClientBuilder.account(account);
-		} else {
+		}
+		else {
 			log.severe("Can not initiate Cloudant client from Spring config.");
 			throw new RuntimeException("No valid configuration for Cloudant client found.");
 		}

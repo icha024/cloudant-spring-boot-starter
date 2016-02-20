@@ -1,6 +1,7 @@
 package com.clianz.cloudant.spring;
 
 import com.cloudant.client.api.CloudantClient;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

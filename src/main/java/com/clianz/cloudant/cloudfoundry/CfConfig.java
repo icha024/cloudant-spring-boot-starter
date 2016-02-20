@@ -15,7 +15,7 @@ public class CfConfig {
 
 	@Getter
 	@SerializedName("cloudantNoSQLDB")
-	private CloudantNoSQLDB[] cloudantNoSQLDB = new CloudantNoSQLDB[]{new CloudantNoSQLDB()};
+	private CloudantNoSQLDB[] cloudantNoSQLDB = new CloudantNoSQLDB[] {new CloudantNoSQLDB()};
 
 	public CloudantNoSQLDB getCloudantNoSQLDB() {
 		return cloudantNoSQLDB[0];
