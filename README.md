@@ -1,5 +1,6 @@
 # Cloudant Auto-Configuration for Spring Boot
-[![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter)
+[![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
+
 Provides convenient Cloudant dependency and configuration helper.
 ## Installing with Maven
 ```xml
