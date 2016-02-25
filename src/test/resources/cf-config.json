@@ -1,0 +1,16 @@
+{
+  "cloudantNoSQLDB": [
+	{
+	  "name": "Spacer-cloudantNoSQLDB",
+	  "label": "cloudantNoSQLDB",
+	  "plan": "Shared",
+	  "credentials": {
+		"username": "abcccctests-9144-4c65-8f10-abcccctests-bluemix",
+		"password": "abcccctests",
+		"host": "abcccctests-9144-4c65-8f10-abcccctests-bluemix.cloudant.com",
+		"port": 443,
+		"url": "https://abcccctests-9144-4c65-8f10-abcccctests-bluemix:abcccctests@abcccctests-9144-4c65-8f10-abcccctests-bluemix.cloudant.com"
+	  }
+	}
+  ]
+}
