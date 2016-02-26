@@ -24,7 +24,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Log
-@EnableConfigurationProperties(CloudantProperties.class)
 public class CloudantAutoConfiguration {
 
 	@Autowired
