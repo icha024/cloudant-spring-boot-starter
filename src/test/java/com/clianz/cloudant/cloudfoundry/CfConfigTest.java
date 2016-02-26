@@ -3,10 +3,6 @@ package com.clianz.cloudant.cloudfoundry;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
 import com.google.gson.Gson;
 import org.junit.Test;
 
@@ -14,36 +10,11 @@ public class CfConfigTest {
 
 	@Test
 	public void testGetCloudantNoSQLDB() throws Exception {
-		String configJson = readFile("cf-config.json");
+		String configJson = new ConfigReader().readFile("cf-config.json");
 		CfConfig cfConfig = new Gson().fromJson(configJson, CfConfig.class);
 		String username = cfConfig.getCloudantNoSQLDB().getCredentials().getUsername();
 		String password = cfConfig.getCloudantNoSQLDB().getCredentials().getPassword();
 		assertThat(username, is("abcccctests-9144-4c65-8f10-abcccctests-bluemix"));
 		assertThat(password, is("abcccctests"));
-	}
-
-	private String readFile(String filename) throws IOException {
-		StringBuilder result = new StringBuilder("");
-
-		//Get file from resources folder
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource(filename).getFile());
-
-		try {
-			Scanner scanner = new Scanner(file);
-
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				result.append(line).append("\n");
-			}
-
-			scanner.close();
-
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return result.toString();
 	}
 }
