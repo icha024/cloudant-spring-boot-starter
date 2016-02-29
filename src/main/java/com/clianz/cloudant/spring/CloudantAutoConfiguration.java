@@ -13,7 +13,6 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,8 +31,8 @@ public class CloudantAutoConfiguration {
 	@Autowired
 	CloudantClientBuilderProvider clientBuilderProvider;
 
-	String vcapServices = System.getenv("VCAP_SERVICES");;
-
+	String vcapServices = System.getenv("VCAP_SERVICES");
+	
 	@Bean
 	@ConditionalOnMissingBean
 	public CloudantClient cloudantClient() throws MalformedURLException {
