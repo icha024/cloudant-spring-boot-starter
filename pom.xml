@@ -9,6 +9,7 @@
 	<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
 	<properties>
 		<java.version>1.6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<licenses>
 		<license>
@@ -78,6 +79,7 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
