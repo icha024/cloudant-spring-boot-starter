@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 /**
  * Wraps ClientBuilder so we can unit test around static methods.
  */
-@Component
 public class CloudantClientBuilderProvider {
 
 	ClientBuilder url(String url) throws MalformedURLException {

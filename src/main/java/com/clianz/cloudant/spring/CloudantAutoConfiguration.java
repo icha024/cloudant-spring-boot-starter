@@ -8,11 +8,13 @@ import com.clianz.cloudant.cloudfoundry.CfConfig;
 import com.cloudant.client.api.ClientBuilder;
 import com.cloudant.client.api.CloudantClient;
 import com.google.gson.Gson;
+import lombok.Setter;
 import lombok.extern.java.Log;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,15 +23,16 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author Ian Chan (ian.chan@clianz.com)
  */
-@Configuration
 @Log
+@Configuration
+@EnableConfigurationProperties(CloudantProperties.class)
 public class CloudantAutoConfiguration {
 
 	@Autowired
 	private CloudantProperties prop;
 
-	@Autowired
-	CloudantClientBuilderProvider clientBuilderProvider;
+	@Setter
+	CloudantClientBuilderProvider clientBuilderProvider = new CloudantClientBuilderProvider();
 
 	String vcapServices = System.getenv("VCAP_SERVICES");
 	
