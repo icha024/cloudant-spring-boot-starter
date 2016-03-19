@@ -7,7 +7,7 @@ Provides convenient Cloudant dependency and configuration helper.
 <dependency>
   <groupId>com.clianz</groupId>
   <artifactId>cloudant-spring-boot-starter</artifactId>
-  <version>0.9.0</version>
+  <version>0.9.3</version>
 </dependency>
 ```
 ## Usage
@@ -73,7 +73,7 @@ cloudant.url=http://localhost:5984
 
 ## Requirements
 - Java 1.6+
-- [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.2.0 is included as transitive dependency) 
+- [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.3.0 is included as transitive dependency) 
 
 ## License
 
