@@ -4,7 +4,7 @@
 Provides convenient Cloudant dependency and configuration helper.
 
 ## Usage
-### Using Cloudant client
+#### Using the Cloudant client
 Just inject the client:
 ```java
 @Autowired
@@ -15,7 +15,7 @@ Then do some client API function, or just create database from it and start usin
 Database db = cloudant.database("mydb", true);
 db.save(data);
 ```
-### Alternative: Use the database directly
+#### Alternative: Use the database directly
 if you don't need to manipulate Cloudant at the account level, you may inject a database instance directly:
 ```java
 @Bean
@@ -78,7 +78,7 @@ cloudant.url=http://localhost:5984
 ```
 
 ### Demo
-Example app is avaible at https://github.com/icha024/cloudant-spring-boot-starter-example
+Example app is available at https://github.com/icha024/cloudant-spring-boot-starter-example
 
 ## Requirements
 - Java 1.6+
