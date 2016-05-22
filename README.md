@@ -1,7 +1,7 @@
 # Cloudant Auto-Configuration for Spring Boot
 [![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Coverage Status](https://coveralls.io/repos/github/icha024/cloudant-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/icha024/cloudant-spring-boot-starter?branch=master)
 
-Provides convenient Cloudant dependency and configuration helper.
+A convienient way to use the [official Cloudant client](https://github.com/cloudant/java-cloudant) with Spring Boot.
 
 ## Usage
 #### Using the Cloudant client
@@ -10,7 +10,7 @@ Just inject the client:
 @Autowired
 CloudantClient cloudant
 ```
-Then do some client API function, or just create database from it and start using it:
+Then do some client API function, or just create a database from it and start using it:
 ```java
 Database db = cloudant.database("mydb", true);
 db.save(data);
