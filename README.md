@@ -15,8 +15,8 @@ Then do some client API function, or just create database from it and start usin
 Database db = cloudant.database("mydb", true);
 db.save(data);
 ```
-### Shortcut: Use the database directly
-Alternatively, you may inject a database instance directly if you don't need to manipulate cloudant at the account level:
+### Alternative: Use the database directly
+if you don't need to manipulate Cloudant at the account level, you may inject a database instance directly:
 ```java
 @Bean
 public Database mydb(CloudantClient cloudant) {
@@ -34,6 +34,7 @@ mydb.save(data);
 
 ## Installing with Maven
  [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
+ 
  Check Maven Central for the latest published version.
 ```xml
 <dependency>
