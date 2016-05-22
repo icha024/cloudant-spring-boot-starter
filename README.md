@@ -1,15 +1,8 @@
 # Cloudant Auto-Configuration for Spring Boot
-[![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter) [![Coverage Status](https://coveralls.io/repos/github/icha024/cloudant-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/icha024/cloudant-spring-boot-starter?branch=master)
+[![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Coverage Status](https://coveralls.io/repos/github/icha024/cloudant-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/icha024/cloudant-spring-boot-starter?branch=master)
 
 Provides convenient Cloudant dependency and configuration helper.
-## Installing with Maven
-```xml
-<dependency>
-  <groupId>com.clianz</groupId>
-  <artifactId>cloudant-spring-boot-starter</artifactId>
-  <version>0.9.3</version>
-</dependency>
-```
+
 ## Usage
 ### Using Cloudant client
 Just inject the client:
@@ -22,8 +15,8 @@ Then do some client API function, or just create database from it and start usin
 Database db = cloudant.database("mydb", true);
 db.save(data);
 ```
-### Using database directly
-Alternatively, you may inject a database instance directly:
+### Shortcut: Use the database directly
+Alternatively, you may inject a database instance directly if you don't need to manipulate cloudant at the account level:
 ```java
 @Bean
 public Database mydb(CloudantClient cloudant) {
@@ -38,6 +31,18 @@ Database mydb;
 ```java
 mydb.save(data);
 ```
+
+## Installing with Maven
+ [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
+ Check Maven Central for the latest published version.
+```xml
+<dependency>
+  <groupId>com.clianz</groupId>
+  <artifactId>cloudant-spring-boot-starter</artifactId>
+  <version>0.9.3</version>
+</dependency>
+```
+
 ## Configuration
 ### Spring Boot Configuration
 Configurations can be placed in the application.properties (or yml) as usual.
@@ -70,6 +75,9 @@ To connect to CouchDB on localhost for example, just set the url:
 ```properties
 cloudant.url=http://localhost:5984
 ```
+
+### Demo
+Example app is avaible at https://github.com/icha024/cloudant-spring-boot-starter-example
 
 ## Requirements
 - Java 1.6+
