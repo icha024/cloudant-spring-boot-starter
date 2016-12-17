@@ -73,8 +73,7 @@ public class CloudantAutoConfigurationTest {
 		prop.setUrl(TEST_URL);
 		prop.setAccount(TEST_ACCOUNT_NAME);
 
-		cloudantAutoConfiguration.setProp(prop);
-		cloudantAutoConfiguration.createCloudantClient();
+		cloudantAutoConfiguration.createCloudantClient(prop);
 
 		verify(clientBuilderProvider, times(1)).url(TEST_URL);
 		verify(clientBuilderProvider, times(0)).account(TEST_ACCOUNT_NAME);
@@ -86,8 +85,7 @@ public class CloudantAutoConfigurationTest {
 		prop.setAccount(TEST_ACCOUNT_NAME);
 		prop.setPassword(TEST_PASSWORD);
 
-		cloudantAutoConfiguration.setProp(prop);
-		cloudantAutoConfiguration.createCloudantClient();
+		cloudantAutoConfiguration.createCloudantClient(prop);
 
 		verify(clientBuilderProvider, times(0)).url(TEST_URL);
 		verify(clientBuilderProvider, times(1)).account(TEST_ACCOUNT_NAME);
@@ -98,7 +96,7 @@ public class CloudantAutoConfigurationTest {
 	public void testLoadCfConfig() throws Exception {
 		String cfConfig = new ConfigReader().readFile("cf-config.json");
 		cloudantAutoConfiguration.setVcapServices(cfConfig);
-		cloudantAutoConfiguration.createCloudantClient();
+		cloudantAutoConfiguration.createCloudantClient(null);
 
 		verify(clientBuilder, times(1)).username(TEST_VCAP_USERNAME);
 		verify(clientBuilder, times(1)).password(TEST_VCAP_PASSWORD);
@@ -117,8 +115,7 @@ public class CloudantAutoConfigurationTest {
 		prop.setMaxConnections(TEST_MAX_CONNECTIONS);
 		prop.setDisableSSLAuthentication(TEST_DISABLE_SSL_AUTH);
 
-		cloudantAutoConfiguration.setProp(prop);
-		cloudantAutoConfiguration.createCloudantClient();
+		cloudantAutoConfiguration.createCloudantClient(prop);
 
 		verify(clientBuilderProvider, times(0)).url(TEST_URL);
 		verify(clientBuilderProvider, times(1)).account(TEST_USERNAME);
