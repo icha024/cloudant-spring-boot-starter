@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import lombok.Setter;
 import lombok.extern.java.Log;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -28,9 +27,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(CloudantProperties.class)
 public class CloudantAutoConfiguration {
 
-	@Autowired
-	private CloudantProperties prop;
-
 	@Setter
 	CloudantClientBuilderProvider clientBuilderProvider = new CloudantClientBuilderProvider();
 
@@ -38,11 +34,11 @@ public class CloudantAutoConfiguration {
 	
 	@Bean
 	@ConditionalOnMissingBean
-	public CloudantClient cloudantClient() throws MalformedURLException {
-		return createCloudantClient();
+	public CloudantClient cloudantClient(final CloudantProperties cloudantProperties) throws MalformedURLException {
+		return createCloudantClient(cloudantProperties);
 	}
 
-	protected CloudantClient createCloudantClient() throws MalformedURLException {
+	protected CloudantClient createCloudantClient(final CloudantProperties prop) throws MalformedURLException {
 		try {
 			if (vcapServices != null) {
 				CfConfig cfConfig = new Gson().fromJson(vcapServices, CfConfig.class);
@@ -112,9 +108,5 @@ public class CloudantAutoConfiguration {
 
 	protected void setVcapServices(String vcapServices) {
 		this.vcapServices = vcapServices;
-	}
-
-	protected void setProp(CloudantProperties prop) {
-		this.prop = prop;
 	}
 }
