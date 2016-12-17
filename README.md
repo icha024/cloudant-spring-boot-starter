@@ -40,7 +40,7 @@ mydb.save(data);
 <dependency>
   <groupId>com.clianz</groupId>
   <artifactId>cloudant-spring-boot-starter</artifactId>
-  <version>0.9.3</version>
+  <version>0.9.5</version>
 </dependency>
 ```
 
@@ -82,7 +82,7 @@ Example app is available at https://github.com/icha024/cloudant-spring-boot-star
 
 ## Requirements
 - Java 1.6+
-- [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.3.0 is included as transitive dependency) 
+- [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.7.0 is included as transitive dependency) 
 
 ## License
 
