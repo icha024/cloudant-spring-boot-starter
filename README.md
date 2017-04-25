@@ -40,7 +40,7 @@ Database mydb;
 mydb.save(data);
 ```
 
-#### Using the Cloudant client directly
+### Using the Cloudant client directly
 Alternatively, you may inject the client for fine-grain controls:
 ```java
 @Autowired
