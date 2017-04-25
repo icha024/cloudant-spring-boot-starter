@@ -18,9 +18,9 @@ A convienient way to use the [official Cloudant client](https://github.com/cloud
 repositories {
 	mavenCentral()
 }
-```
-```
-compile('com.clianz:cloudant-spring-boot-starter:0.9.5')
+dependencies {
+	compile('com.clianz:cloudant-spring-boot-starter:0.9.5')
+}
 ```
 
 ## Usage
