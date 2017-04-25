@@ -4,19 +4,7 @@
 A convienient way to use the [official Cloudant client](https://github.com/cloudant/java-cloudant) with Spring Boot.
 
 ## Usage
-#### Using the Cloudant client
-Just inject the client:
-```java
-@Autowired
-CloudantClient cloudant
-```
-Then do some client API function, or just create a database from it and start using it:
-```java
-Database db = cloudant.database("mydb", true);
-db.save(data);
-```
-#### Alternative: Use the database directly
-if you don't need to manipulate Cloudant at the account level, you may inject a database instance directly:
+Inject a database:
 ```java
 @Bean
 public Database mydb(CloudantClient cloudant) {
@@ -32,10 +20,21 @@ Database mydb;
 mydb.save(data);
 ```
 
-## Installing with Maven
- [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
- 
- Check Maven Central for the latest published version.
+#### Using the Cloudant client directly
+Alternatively, you may inject the client for fine-grain controls:
+```java
+@Autowired
+CloudantClient cloudant
+```
+Then do some client API function, eg. Create a database:
+```java
+Database db = cloudant.database("mydb", true);
+```
+
+## Installing
+Latest published version on Maven Central: [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
+
+### via Maven
 ```xml
 <dependency>
   <groupId>com.clianz</groupId>
@@ -44,15 +43,26 @@ mydb.save(data);
 </dependency>
 ```
 
+### via Gradle
+```
+repositories {
+	mavenCentral()
+}
+```
+and
+```
+compile('com.clianz:cloudant-spring-boot-starter:0.9.5')
+```
+
 ## Configuration
 ### Spring Boot Configuration
 Configurations can be placed in the application.properties (or yml) as usual.
 Either username/password or a URL must be specified.
 ```properties
-##### Mandatory configs - username/password or url #####
+##### Mandatory: Provide URL or username/password  #####
 cloudant.username=myUserName              #Username as assigned by Cloudant.
 cloudant.password=myPasswd                #Password as assigned by Cloudant.
-cloudant.url=http...                      #Defaults to official server.
+cloudant.url=http...                      #Url to CouchDB or a Cloudant instance. Defaults to official Cloudant server.
 
 ##### Optional configs #####
 cloudant.account=myAccountName            #Defaults to username if left blank.
