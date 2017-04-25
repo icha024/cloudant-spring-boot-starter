@@ -1,4 +1,4 @@
-# Cloudant Auto-Configuration for Spring Boot
+# Cloudant/CouchDB Auto-Configuration for Spring Boot
 [![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Coverage Status](https://coveralls.io/repos/github/icha024/cloudant-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/icha024/cloudant-spring-boot-starter?branch=master)
 
 A convienient way to use the [official Cloudant client](https://github.com/cloudant/java-cloudant) with Spring Boot.
