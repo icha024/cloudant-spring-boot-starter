@@ -1,7 +1,27 @@
 # Cloudant/CouchDB Auto-Configuration for Spring Boot
 [![Build Status](https://travis-ci.org/icha024/cloudant-spring-boot-starter.svg?branch=master)](https://travis-ci.org/icha024/cloudant-spring-boot-starter) [![Coverage Status](https://coveralls.io/repos/github/icha024/cloudant-spring-boot-starter/badge.svg?branch=master)](https://coveralls.io/github/icha024/cloudant-spring-boot-starter?branch=master)
+[![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
 
 A convienient way to use the [official Cloudant client](https://github.com/cloudant/java-cloudant) with Spring Boot.
+
+## Installing
+**_Maven_**
+```xml
+<dependency>
+  <groupId>com.clianz</groupId>
+  <artifactId>cloudant-spring-boot-starter</artifactId>
+  <version>0.9.5</version>
+</dependency>
+```
+**_Gradle_**
+```
+repositories {
+	mavenCentral()
+}
+```
+```
+compile('com.clianz:cloudant-spring-boot-starter:0.9.5')
+```
 
 ## Usage
 Inject a database:
@@ -26,32 +46,8 @@ Alternatively, you may inject the client for fine-grain controls:
 @Autowired
 CloudantClient cloudant
 ```
-Then do some client API function, eg. Create a database:
 ```java
 Database db = cloudant.database("mydb", true);
-```
-
-## Installing
-Latest published version on Maven Central: [![Maven Central](https://img.shields.io/maven-central/v/com.clianz/cloudant-spring-boot-starter.svg)](http://search.maven.org/#search%7Cga%7C1%7Ccloudant-spring-boot-starter)
-
-### via Maven
-```xml
-<dependency>
-  <groupId>com.clianz</groupId>
-  <artifactId>cloudant-spring-boot-starter</artifactId>
-  <version>0.9.5</version>
-</dependency>
-```
-
-### via Gradle
-```
-repositories {
-	mavenCentral()
-}
-```
-and
-```
-compile('com.clianz:cloudant-spring-boot-starter:0.9.5')
 ```
 
 ## Configuration
@@ -87,7 +83,7 @@ To connect to CouchDB on localhost for example, just set the url:
 cloudant.url=http://localhost:5984
 ```
 
-### Demo
+### Example
 Example app is available at https://github.com/icha024/cloudant-spring-boot-starter-example
 
 ## Requirements
