@@ -89,7 +89,7 @@ cloudant.url=http://localhost:5984
 Example app is available at https://github.com/icha024/cloudant-spring-boot-starter-example
 
 ## Requirements
-- Java 1.6+
+- Java 1.7+
 - [Official Cloudant client 2.x](https://github.com/cloudant/java-cloudant)    (v2.7.0 is included as transitive dependency) 
 
 ## License
