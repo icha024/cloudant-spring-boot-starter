@@ -4,6 +4,8 @@
 
 A convienient way to use the [official Cloudant client](https://github.com/cloudant/java-cloudant) with Spring Boot.
 
+Compatible with both SpringBoot 1.x and 2.x.
+
 ## Installing
 **_Maven_**
 ```xml
