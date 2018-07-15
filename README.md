@@ -21,7 +21,7 @@ repositories {
 	mavenCentral()
 }
 dependencies {
-	compile('com.clianz:cloudant-spring-boot-starter:2.0.5')
+	compile('com.clianz:cloudant-spring-boot-starter:2.0.0')
 }
 ```
 
