@@ -1,4 +1,4 @@
-package com.example.web;
+package com.clianz.cloudant.integration.sample.web;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

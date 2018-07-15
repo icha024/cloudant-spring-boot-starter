@@ -1,4 +1,4 @@
-package com.example.web;
+package com.clianz.cloudant.integration.sample.web;
 
 import com.cloudant.client.api.Database;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +22,14 @@ public class WebServer {
 	@RequestMapping("/save")
 	public void saveItems() {
 		String name = "My Item";
-		myItemsDB.save(new Item(name));
+		myItemsDB.save(new com.clianz.cloudant.integration.sample.web.Item(name));
 	}
 
 	@RequestMapping("/list")
-	public List<Item> getItems() throws IOException {
+	public List<com.clianz.cloudant.integration.sample.web.Item> getItems() throws IOException {
 		return myItemsDB.getAllDocsRequestBuilder()
 				.includeDocs(true)
 				.build()
-				.getResponse().getDocsAs(Item.class);
+				.getResponse().getDocsAs(com.clianz.cloudant.integration.sample.web.Item.class);
 	}
 }
