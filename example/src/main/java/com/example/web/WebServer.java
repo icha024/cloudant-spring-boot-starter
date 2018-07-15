@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.util.List;
+
 @RestController
 public class WebServer {
 
 	@Autowired
-	Database mydb;
+	Database myItemsDB;
 
 	@RequestMapping("/")
 	public String index() {
@@ -17,8 +20,16 @@ public class WebServer {
 	}
 
 	@RequestMapping("/save")
-	public String saver() {
-		mydb.save(new Pet("myPet"));
-		return "saved";
+	public void saveItems() {
+		String name = "My Item";
+		myItemsDB.save(new Item(name));
+	}
+
+	@RequestMapping("/list")
+	public List<Item> getItems() throws IOException {
+		return myItemsDB.getAllDocsRequestBuilder()
+				.includeDocs(true)
+				.build()
+				.getResponse().getDocsAs(Item.class);
 	}
 }

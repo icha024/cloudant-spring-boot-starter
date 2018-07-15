@@ -7,14 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class PetApplication {
+public class DbDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PetApplication.class, args);
+		SpringApplication.run(DbDemoApplication.class, args);
 	}
 
 	@Bean
-	public Database mydb(CloudantClient cloudant) {
-		return cloudant.database("mydb", true);
+	public Database myItemsDB(CloudantClient cloudant) {
+		return cloudant.database("my-items-db", true);
 	}
 }

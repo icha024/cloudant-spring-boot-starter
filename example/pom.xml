@@ -26,6 +26,18 @@
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>3.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -57,6 +69,18 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.20.0</version>
@@ -65,9 +89,6 @@
 						<image>
 							<name>springboot-cloudant-starter-example:${project.version}</name>
 							<alias>springboot-cloudant-starter-example</alias>
-							<!-- <build>
-								<dockerFileDir>${project.basedir}</dockerFileDir>
-							</build> -->
 							<build> 
 								<from>openjdk:8-jdk-alpine</from> 
 								<assembly>
@@ -91,6 +112,10 @@
 								<ports>
 									<port>8080:8080</port>
 								</ports>
+								<wait>
+									<log>Tomcat started on port</log>
+									<time>20000</time>
+								</wait>
 							</run>
 						</image>
 						<image>
@@ -109,7 +134,22 @@
 							<goal>start</goal>
 						</goals>
 					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
