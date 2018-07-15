@@ -3,14 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.clianz</groupId>
 	<artifactId>cloudant-spring-boot-starter</artifactId>
-	<version>0.9.6-SNAPSHOT</version>
+	<version>2.0.1-SNAPSHOT</version>
 	<name>cloudant-spring-boot-starter</name>
 	<description>Spring Boot Starter Cloudant</description>
 	<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
 	<properties>
-		<java.version>1.6</java.version>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>1.4.2.RELEASE</spring-boot.version>
+		<spring-boot.version>2.0.3.RELEASE</spring-boot.version>
+		<docker-maven-plugin.version>0.20.0</docker-maven-plugin.version>
+		<rest-assured.version>3.1.0</rest-assured.version>
+		<lombok.version>1.18.0</lombok.version>
 	</properties>
 	<licenses>
 		<license>
@@ -33,7 +36,7 @@
 		<developerConnection>scm:git:git@github.com:icha024/cloudant-spring-boot-starter.git</developerConnection>
 		<url>http://github.com/icha024/cloudant-spring-boot-starter</url>
 	  <tag>HEAD</tag>
-  </scm>
+  	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>com.cloudant</groupId>
@@ -65,9 +68,27 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${spring-boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.6</version>
+			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -108,6 +129,58 @@
 						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker-maven-plugin.version}</version>
+				<configuration>
+					<images>
+						<image>
+							<alias>couchdb</alias>
+							<name>couchdb:1.7</name>
+							<run>
+								<ports>
+									<port>5984:5984</port>
+								</ports>
+								<wait>
+									<log>Apache CouchDB has started</log>
+									<time>10000</time>
+								</wait>
+							</run>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+							<goal>build</goal>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
 						</goals>
 					</execution>
 				</executions>
